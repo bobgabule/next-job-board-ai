@@ -2,6 +2,7 @@ import {
   Sidebar,
   SidebarContent,
   SidebarFooter,
+  SidebarGroup,
   SidebarHeader,
   SidebarMenu,
   SidebarMenuButton,
@@ -9,9 +10,13 @@ import {
   SidebarProvider,
   SidebarTrigger
 } from "@/components/ui/sidebar"
-import AppSidebarClient from "./_AppsidebarClient"
+import { AppSidebarClient } from "./_AppsidebarClient"
+import Link from "next/link"
+import { LogInIcon } from "lucide-react"
+import { SignedOut } from "@/services/clerk/components/SignInStatus"
+import { SidebarUserButton } from "@/features/users/components/SidebarUserButton"
 
-const HomePage = () => {
+export default function HomePage() {
   return (
     <SidebarProvider className="overflow-y-hidden">
       <AppSidebarClient>
@@ -20,11 +25,26 @@ const HomePage = () => {
             <SidebarTrigger />
               <span className="text-xl text-nowrap">Next Jobs</span>
           </SidebarHeader>
-          <SidebarContent></SidebarContent>
+          <SidebarContent>
+            <SidebarGroup>
+            <SidebarMenu>
+              <SignedOut>
+                <SidebarMenuItem>
+                  <SidebarMenuButton asChild>
+                    <Link href="/sign-in">
+                      <LogInIcon />
+                      <span>Log In</span>
+                    </Link>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              </SignedOut>
+            </SidebarMenu>
+            </SidebarGroup>
+          </SidebarContent>
           <SidebarFooter>
             <SidebarMenu>
               <SidebarMenuItem>
-                <SidebarMenuButton>adasd</SidebarMenuButton>
+                <SidebarUserButton />
               </SidebarMenuItem>
             </SidebarMenu>
           </SidebarFooter>
@@ -34,5 +54,3 @@ const HomePage = () => {
     </SidebarProvider>
   )
 }
-
-export default HomePage

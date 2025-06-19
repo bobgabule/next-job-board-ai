@@ -4,7 +4,7 @@ import { SidebarTrigger } from "@/components/ui/sidebar";
 import { useIsMobile } from "@/hooks/use-mobile"
 import { ReactNode } from "react"
 
-const AppSidebarClient = ({ children }: { children: ReactNode }) => {
+export function AppSidebarClient({ children }: { children: ReactNode }) {
   const isMobile = useIsMobile();
   
   if(isMobile) {
@@ -23,5 +23,3 @@ const AppSidebarClient = ({ children }: { children: ReactNode }) => {
 
   return children
 }
-
-export default AppSidebarClient
