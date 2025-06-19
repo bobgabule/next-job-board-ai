@@ -15,6 +15,7 @@ import Link from "next/link"
 import { LogInIcon } from "lucide-react"
 import { SignedOut } from "@/services/clerk/components/SignInStatus"
 import { SidebarUserButton } from "@/features/users/components/SidebarUserButton"
+import { SignedIn } from "@clerk/nextjs"
 
 export default function HomePage() {
   return (
@@ -41,13 +42,15 @@ export default function HomePage() {
             </SidebarMenu>
             </SidebarGroup>
           </SidebarContent>
-          <SidebarFooter>
-            <SidebarMenu>
-              <SidebarMenuItem>
-                <SidebarUserButton />
-              </SidebarMenuItem>
-            </SidebarMenu>
-          </SidebarFooter>
+          <SignedIn>
+            <SidebarFooter>
+              <SidebarMenu>
+                <SidebarMenuItem>
+                  <SidebarUserButton />
+                </SidebarMenuItem>
+              </SidebarMenu>
+            </SidebarFooter>
+          </SignedIn>
         </Sidebar>
         <main className="flex-1">asdasdsad</main>
       </AppSidebarClient>
